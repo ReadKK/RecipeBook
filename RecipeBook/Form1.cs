@@ -16,5 +16,26 @@ namespace RecipeBook
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            label1.Text = "HELP";
+            button1.Text = "Go";
+
+        }
+
+
+        private void addRecipeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form = new Form2();
+            form.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form2 form = new Form2();
+            form.Show();
+        }
     }
+    
 }
