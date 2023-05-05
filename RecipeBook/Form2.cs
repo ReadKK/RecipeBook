@@ -26,6 +26,7 @@ namespace RecipeBook
             label7.Text = "grams/milliliters";
             button1.Text = "Add recipe";
             button2.Text = "Add to the list";
+            button3.Text = "Clear the list";
         }
         public string cs = @"Data Source=(LocalDB)\mssqllocaldb;AttachDbFilename=C:\Users\user\C#\RecipeBook\RecipeBook\Recipe.mdf;Integrated Security=True";
         public SqlConnection myConnection = default(SqlConnection);
@@ -67,10 +68,11 @@ namespace RecipeBook
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string str;
+            string[] str2;
             try
             {
                 myConnection = new SqlConnection(cs);
-                //myCommand = new SqlCommand("INSERT INTO recipe ( recipe_name,recipe_desc,recipe_instruct, dish_id) VALUES ( @recipe_name,@recipe_desc,@recipe_instruct, @dish_id)", myConnection);
                 avIng = new SqlCommand("INSERT INTO available_ingredients ( avl_ingredient_quantity,recipe_id, ingredient_id) VALUES ( @b,@c, @d) ", myConnection);
                 
                 string sql = @"INSERT INTO  recipe ( recipe_name,recipe_desc,recipe_instruct, dish_id) VALUES ( @recipe_name,@recipe_desc,@recipe_instruct, @dish_id);SELECT Scope_Identity()";
@@ -86,36 +88,78 @@ namespace RecipeBook
 
                 int newID = (int)(decimal)myCommand.ExecuteScalar();
 
-                avIng.Parameters.AddWithValue("@b", textBox4.Text);
-                avIng.Parameters.AddWithValue("@c", newID);
-                avIng.Parameters.AddWithValue("@d", comboBox2.SelectedValue);
-                avIng.ExecuteNonQuery();
+
+                for (int i = 0; i < listBox1.Items.Count; i++)
+                {
+                    avIng.Parameters.Clear();
+                    str = listBox1.Items[i].ToString();
+                    str2 = str.Split(';');
+                    avIng.Parameters.AddWithValue("@b", str2[2]);
+                    avIng.Parameters.AddWithValue("@c", newID);
+                    avIng.Parameters.AddWithValue("@d", str2[0]);
+                    avIng.ExecuteNonQuery();
+                }
                 myConnection.Close();
 
                 MessageBox.Show("Insert successful!");
                 if (myConnection.State == ConnectionState.Open)
                 {
                     myConnection.Dispose();
+                    
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            listBox1.Items.Clear();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             decimal d;
+            bool ch;
+            string str;
+            string[] str2;
             if (decimal.TryParse(textBox4.Text, out d))
             {
-                string s =comboBox2.SelectedValue+"; "+ comboBox2.Text + "; " + textBox4.Text;
-                listBox1.Items.Add(s);
+                ch = true;
+                for (int j = 0; j < listBox1.Items.Count; j++)
+                {
+                    str = listBox1.Items[j].ToString();
+                    str2 = str.Split(';');
+                    if (comboBox2.SelectedValue.ToString() ==str2[0])
+                    {
+                        ch = false;
+                        break;
+                    }
+
+                }
+                if (ch == true)
+                {
+                    string s = comboBox2.SelectedValue + ";" + comboBox2.Text + ";" + textBox4.Text;
+                    listBox1.Items.Add(s);
+                }
+                else
+                {
+                    MessageBox.Show("Can't insert the same ingredient");
+                    return;
+                }
+
             }
             else {
                 MessageBox.Show("Please enter a valid number");
                 return;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
         }
     }
 }

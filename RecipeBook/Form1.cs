@@ -19,16 +19,12 @@ namespace RecipeBook
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            label1.Text = "HELP";
+            label1.Text = "Ingredients";
+            label2.Text = "grams/milileters";
+            label3.Text = "Ing.id/Name/quantity";
+            label4.Text = "View recipes";
             button1.Text = "Go";
 
-        }
-
-
-        private void addRecipeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form2 form = new Form2();
-            form.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,6 +32,7 @@ namespace RecipeBook
             Form2 form = new Form2();
             form.Show();
         }
+
     }
     
 }
