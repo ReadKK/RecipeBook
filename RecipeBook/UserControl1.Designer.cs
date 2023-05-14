@@ -161,7 +161,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(343, 90);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(134, 95);
+            this.listBox1.Size = new System.Drawing.Size(191, 95);
             this.listBox1.TabIndex = 28;
             // 
             // button2
@@ -169,7 +169,7 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(135)))), ((int)(((byte)(16)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(512, 89);
+            this.button2.Location = new System.Drawing.Point(559, 89);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(138, 43);
             this.button2.TabIndex = 29;
@@ -203,9 +203,9 @@
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(512, 157);
+            this.button3.Location = new System.Drawing.Point(559, 157);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(88, 28);
+            this.button3.Size = new System.Drawing.Size(138, 28);
             this.button3.TabIndex = 33;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = false;
