@@ -16,9 +16,12 @@ namespace RecipeBook
     {
         public Form1()
         {
+
             InitializeComponent();
+            //AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Databases"));
 
         }
+        
         //public string cs = @"Data Source=(LocalDB)\mssqllocaldb;AttachDbFilename=C:\Users\user\C#\RecipeBook\RecipeBook\Recipe.mdf;Integrated Security=True";
         public string cs = @"Data Source=(LocalDB)\mssqllocaldb;AttachDbFilename=|DataDirectory|\Recipe.mdf;Integrated Security=True";
         public SqlConnection myConnection = default(SqlConnection);
